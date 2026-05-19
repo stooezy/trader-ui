@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query"
-import { fetchPositions, fetchAccount, fetchCandles, fetchIndicators, fetchScanner } from "#/lib/api"
+import { fetchPositions, fetchAccount, fetchCandles, fetchIndicators, fetchScanner, fetchTrades } from "#/lib/api"
 
 export function usePositions() {
   return useQuery({
@@ -39,6 +39,14 @@ export function useScanner() {
   return useQuery({
     queryKey: ["scanner"],
     queryFn: fetchScanner,
+    refetchInterval: 30_000,
+  })
+}
+
+export function useTrades(mode = "dry_run", limit = 50) {
+  return useQuery({
+    queryKey: ["trades", mode, limit],
+    queryFn: () => fetchTrades(mode, limit),
     refetchInterval: 30_000,
   })
 }

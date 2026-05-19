@@ -57,3 +57,22 @@ export interface ScannerSymbol {
   score: number | null
   rejectReason: string | null
 }
+
+export interface Trade {
+  id: number
+  symbol: string
+  direction: string
+  entry_ts: number
+  exit_ts: number | null
+  entry_price: number
+  exit_price: number | null
+  size: number
+  pnl: number | null
+  pnl_pct: number | null
+  max_favorable_pct: number | null
+  max_adverse_pct: number | null
+  entry_reason: string
+  exit_reason: string | null
+  mode: string
+  created_at: number
+}
