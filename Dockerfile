@@ -1,23 +1,15 @@
-FROM node:24-alpine AS base
+FROM node:24-alpine AS builder
 RUN corepack enable && corepack prepare pnpm@latest --activate
 
-FROM base AS deps
 WORKDIR /app
-COPY package.json pnpm-lock.yaml ./
+COPY pnpm-lock.yaml pnpm-workspace.yaml package.json ./
 RUN pnpm install --frozen-lockfile
 
-FROM base AS build
-WORKDIR /app
-COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 RUN pnpm build
 
-FROM base AS runner
-WORKDIR /app
-COPY --from=build /app/.output ./.output
-COPY --from=build /app/package.json ./
-EXPOSE 3000
-ENV NODE_ENV=production
-ENV HOST=0.0.0.0
-ENV PORT=3000
-CMD ["node", ".output/server/index.mjs"]
+FROM nginx:stable-alpine AS runner
+RUN rm -rf /usr/share/nginx/html/*
+COPY --from=builder /app/dist /usr/share/nginx/html
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]

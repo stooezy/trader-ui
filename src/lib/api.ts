@@ -1,6 +1,6 @@
 import type { Position, Candle, Indicator, ScannerSymbol } from "#/lib/types"
 
-const API_BASE = "https://trader.dymple.net"
+const API_BASE = "https://api.trader.dymple.net"
 
 async function fetchJson<T>(path: string): Promise<T> {
   const res = await fetch(`${API_BASE}${path}`)
