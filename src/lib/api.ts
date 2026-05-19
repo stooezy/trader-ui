@@ -1,6 +1,6 @@
-import type { Position, Candle, Indicator, ScannerSymbol } from "#/lib/types"
+import type { Position, Candle, Indicator, ScannerSymbol, Trade } from "#/lib/types"
 
-const API_BASE = "https://trader.dymple.net"
+const API_BASE = "https://api.trader.dymple.net"
 
 async function fetchJson<T>(path: string): Promise<T> {
   const res = await fetch(`${API_BASE}${path}`)
@@ -26,4 +26,8 @@ export function fetchIndicators(symbol: string, tf: string, limit = 200): Promis
 
 export function fetchScanner(): Promise<ScannerSymbol[]> {
   return fetchJson("/api/scanner")
+}
+
+export function fetchTrades(mode = "dry_run", limit = 50, offset = 0): Promise<Trade[]> {
+  return fetchJson(`/api/trades?mode=${mode}&limit=${limit}&offset=${offset}`)
 }

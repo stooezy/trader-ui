@@ -11,7 +11,7 @@ function Dashboard() {
   const { data: account } = useAccount()
   const { data: scanner } = useScanner()
 
-  const signals = scanner?.filter((s) => s.score !== null) ?? []
+  const signals = scanner?.filter((s) => s.score != null) ?? []
   const filtered = scanner?.length ?? 0
 
   return (

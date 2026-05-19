@@ -65,10 +65,10 @@ function Scanner() {
                     )}
                   </TableCell>
                   <TableCell className="font-mono">
-                    {s.score !== null ? s.score.toFixed(2) : '—'}
+                    {s.score != null ? s.score.toFixed(2) : '—'}
                   </TableCell>
                   <TableCell>
-                    {s.score !== null ? (
+                    {s.score != null ? (
                       <Badge variant={s.score >= 0 ? 'green' : 'red'}>
                         {s.score >= 0 ? 'BUY' : 'SELL'}
                       </Badge>
