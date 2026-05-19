@@ -1,0 +1,20 @@
+services:
+  trader-ui:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: trader-ui
+    restart: unless-stopped
+    networks:
+      - proxy
+    expose:
+      - 3000
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.trader-ui.rule=Host(`trader.dymple.net`)"
+      - "traefik.http.routers.trader-ui.entrypoints=websecure"
+      - "traefik.http.routers.trader-ui.tls.certresolver=letsencrypt"
+
+networks:
+  proxy:
+    external: true

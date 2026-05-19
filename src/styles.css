@@ -1,0 +1,43 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --color-background: hsl(240 10% 3.9%);
+  --color-foreground: hsl(0 0% 98%);
+  --color-card: hsl(240 10% 5.9%);
+  --color-card-foreground: hsl(0 0% 98%);
+  --color-popover: hsl(240 10% 5.9%);
+  --color-popover-foreground: hsl(0 0% 98%);
+  --color-primary: hsl(142 76% 46%);
+  --color-primary-foreground: hsl(0 0% 5%);
+  --color-secondary: hsl(240 5% 15%);
+  --color-secondary-foreground: hsl(0 0% 98%);
+  --color-muted: hsl(240 5% 15%);
+  --color-muted-foreground: hsl(240 5% 65%);
+  --color-accent: hsl(240 5% 15%);
+  --color-accent-foreground: hsl(0 0% 98%);
+  --color-destructive: hsl(0 72% 51%);
+  --color-destructive-foreground: hsl(0 0% 98%);
+  --color-border: hsl(240 5% 20%);
+  --color-input: hsl(240 5% 20%);
+  --color-ring: hsl(142 76% 46%);
+  --color-green: hsl(142 76% 46%);
+  --color-red: hsl(0 72% 51%);
+  --color-green-muted: hsl(142 76% 46% / 0.15);
+  --color-red-muted: hsl(0 72% 51% / 0.15);
+  --radius: 0.625rem;
+}
+
+* {
+  border-color: var(--color-border);
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
